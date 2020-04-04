@@ -12,5 +12,21 @@ If you have figured out the O(n) solution, try coding another solution using the
 '''
 
 class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
-      pass
+    def maxSubArray(self, nums):
+      m = max(nums)
+      if m <= 0:
+        return m
+      sum = 0
+      max_sum = 0
+      for n in nums:
+        sum = sum + n
+        if sum > max_sum:
+          max_sum = sum
+        if sum < 0:
+          sum = 0
+      return max_sum
+
+s = Solution()
+print(
+  s.maxSubArray([-2,0])
+)
