@@ -32,38 +32,39 @@ Solution: O(N) time and O(N) space
 
 
 class Solution:
-  def findMaxLength(self, nums):
-    if len(nums) < 2:
-      return 0
-    h = {0: [-1]}
-    sum = 0
-    for i,n in enumerate(nums):
-      sum = sum + (1 if n else -1)
-      if sum in h:
-          h[sum] = [h[sum][0], i]
-      else:
-        h[sum] = [i]
-    max_len = 0
-    for k in h.keys():
-      if len(h[k]) == 2:
-        l = h[k][1] - h[k][0]
-        if max_len < l:
-          max_len = l
-    return max_len
+    def findMaxLength(self, nums):
+        if len(nums) < 2:
+            return 0
+        h = {0: [-1]}
+        sum = 0
+        for i, n in enumerate(nums):
+            sum = sum + (1 if n else -1)
+            if sum in h:
+                h[sum] = [h[sum][0], i]
+            else:
+                h[sum] = [i]
+        max_len = 0
+        for k in h.keys():
+            if len(h[k]) == 2:
+                l = h[k][1] - h[k][0]
+                if max_len < l:
+                    max_len = l
+        return max_len
+
 
 inputs = [
-  [0,1],
-  [1],
-  [0],
-  [],
-  [0,1,0],
-  [0,1,1,0,0,0,1,0,1],
-  [0,0,1,1,1,1,0],
-  [1,1,0,0,1,1,1,0,0],
-  [1,0,0,1,1,1,1,0],
-  [1,0,1,0,1,0],
-  [1 for i in range(50000)]
+    [0, 1],
+    [1],
+    [0],
+    [],
+    [0, 1, 0],
+    [0, 1, 1, 0, 0, 0, 1, 0, 1],
+    [0, 0, 1, 1, 1, 1, 0],
+    [1, 1, 0, 0, 1, 1, 1, 0, 0],
+    [1, 0, 0, 1, 1, 1, 1, 0],
+    [1, 0, 1, 0, 1, 0],
+    [1 for i in range(50000)]
 ]
 
 for i in inputs:
-  print('\nAnswer:',Solution().findMaxLength(i), '\n')
+    print('\nAnswer:', Solution().findMaxLength(i), '\n')
