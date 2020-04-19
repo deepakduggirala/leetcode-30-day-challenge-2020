@@ -14,13 +14,25 @@ Example 2:
 Input: [4,1,2,1,2]
 Output: 4
 '''
+from hypothesis import given
+import hypothesis.strategies as st
 
 class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
+    def singleNumber(self, nums):
         m = {}
         for n in nums:
             if m.get(n) is None:
                 m[n] = 1
             else:
                 m[n] = m[n] + 1
-        return [num for (num, freq) in m.items() if freq == 1][0]
+        t = [num for (num, freq) in m.items() if freq == 1]
+        if len(t) > 0:
+            return t[0]
+        else:
+            return 0
+
+@given(st.lists(st.integers()), st.integers())
+def test_singleNumber(nums, x):
+    nums.extend(nums)
+    nums.append(x)
+    assert Solution().singleNumber(nums) == x
