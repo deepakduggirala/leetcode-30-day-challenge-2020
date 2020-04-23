@@ -1,2 +1,4 @@
 *.out
 .vscode
+.hypothesis
+__pycache__
